@@ -1,7 +1,9 @@
 To add new files and directories to git:
 1) git add (name of directories)
-2) git commit -a -m "Update 1.0"
-3) git push
+
+To update current files:
+1) git commit -a -m "Update 1.0"
+2) git push
 
 To update repo:
 1) git pull
