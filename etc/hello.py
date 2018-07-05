@@ -7,6 +7,6 @@ CONFIG = {
         '--error-logfile error.log',
         '--workers=4',
         '--timeout=60',
-        'hello:app',
+        '/home/box/web/hello:app',
     ),
 }
