@@ -17,10 +17,9 @@ To start init.sh:
 To maintain server on local pc:
 1) sudo ln -sf /home/inesterova/training/etc/nginx.conf /etc/nginx/sites-enabled/default
 2) sudo /etc/init.d/nginx restart
-
-3) gunicorn -b 0.0.0.0:8080 hello
+3) gunicorn -b 0.0.0.0:8000 ask.wsgi:application (from ask folder)
 
 To test locally:
-﻿1) curl -vv 'http://127.0.0.1/hello/?a=1&a=2&b=3'
+﻿1) curl -vv 'http://127.0.0.1/?a=1&a=2&b=3'
 
 
