@@ -6,9 +6,6 @@ sudo /etc/init.d/nginx restart
 #sudo ln -sf /home/box/web/etc/gunicorn-django.conf /etc/gunicorn.d/test-django
 #sudo /etc/init.d/gunicorn restart
 
-cd ask
-gunicorn -b 0.0.0.0:8000 ask.wsgi:application
-
 sudo /etc/init.d/mysql start
 mysql -uroot -e "CREATE USER 'admin'@'localhost'"
 mysql -uroot -e "SET PASSWORD FOR 'admin'@'localhost' = PASSWORD('pass111')"
@@ -17,5 +14,8 @@ mysql -uroot -e "GRANT ALL ON mybase.* TO 'admin'@'localhost'"
 
 python manage.py makemigrations
 python manage.py migrate
+
+cd ask
+gunicorn -b 0.0.0.0:8000 ask.wsgi:application
 
 
