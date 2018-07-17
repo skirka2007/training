@@ -12,7 +12,10 @@ To clone repo:
 1) git clone https://github.com/skirka2007/training.git /home/box/web
 
 To start init.sh:
-1) bash /home/box/web/init.sh
+1) cd web
+2) bash /home/box/web/init_from_web.sh
+3) cd ask
+4) bash /home/box/web/init_from_ask.sh
 
 To maintain server on local pc:
 1) sudo ln -sf /home/inesterova/training/etc/nginx.conf /etc/nginx/sites-enabled/default
