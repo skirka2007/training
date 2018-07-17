@@ -20,7 +20,7 @@ class Question(models.Model):
 class Answer(models.Model):
     text = models.TextField()
     added_at = models.DateField(blank = True, auto_now_add=True)
-    question = models.ForeignKey(User)
-    author = models.ManyToManyField(User, related_name='author_set')
+    question = models.ForeignKey(Question, on_delete=models.SET_NULL)
+    author = models.ManyToManyField(User, on_delete=models.SET_NULL)
 
 
