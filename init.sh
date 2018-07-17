@@ -10,8 +10,10 @@ cd ask
 gunicorn -b 0.0.0.0:8000 ask.wsgi:application
 
 sudo /etc/init.d/mysql start
-mysql -u root
-CREATE DATABASE skirka CHARACTER SET utf8
+mysql -uroot -e "CREATE USER 'admin'@'localhost'"
+mysql -uroot -e "SET PASSWORD FOR 'admin'@'localhost' = PASSWORD('pass111')"
+mysql -uroot -e "CREATE DATABASE mybase"
+mysql -uroot -e "GRANT ALL ON mybase.* TO 'admin'@'localhost'"
 
 python manage.py makemigrations
 python manage.py migrate
