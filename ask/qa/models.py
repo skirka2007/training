@@ -6,7 +6,7 @@ class QuestionManager(models.Manager):
     def new(self):
         return self.order_by('-id')
     def popular(self):
-        return seld.order_by('-rating')
+        return self.order_by('-rating')
 
 class Question(models.Model):
     objects = QuestionManager()
