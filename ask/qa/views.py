@@ -46,30 +46,30 @@ def question_page(request, pk):
         raise Http404
     ans = Answer.objects.filter(question_id = pk)
     if request.method == "POST":
-	form = AnswerForm(request.POST)
-	if form.is_valid():
-	    form.save()
-	    url = quest.get_url()
-	    return HttpResponseRedirect(url)
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            form.save()
+            url = quest.get_url()
+            return HttpResponseRedirect(url)
     else:
-	form = AnswerForm(initial={'question': quest.id})
+        form = AnswerForm(initial={'question': quest.id})
     return render(request, 'question_with_answers.html', {
         'question': quest,
         'answers': ans,
-	'form' : form,
+        'form' : form,
     })
 
 def ask(request):
     if request.method == "POST":
-	form = AskForm(request.POST)
-	if form.is_valid():
-	    quest = form.save()
-	    url = quest.get_url()
-	    return HttpResponseRedirect(url)
+        form = AskForm(request.POST)
+        if form.is_valid():
+            quest = form.save()
+            url = quest.get_url()
+            return HttpResponseRedirect(url)
     else:
-	form = AskForm()
+        form = AskForm()
     return render(request, 'add_ask.html', {
-	'form': form
+        'form': form
     })
     
 

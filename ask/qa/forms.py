@@ -23,7 +23,7 @@ class AnswerForm(forms.Form):
    
     def clean_question(self):
         quest_id = self.cleaned_data['question']
-	try:
+        try:
             question = Question.objects.get(id=quest_id)
         except Question.DoesNotExist:
             question = None
@@ -31,7 +31,7 @@ class AnswerForm(forms.Form):
 
 
     def save(self):
-	ans = Answer(**self.cleaned_data)
-	ans.save()
+        ans = Answer(**self.cleaned_data)
+        ans.save()
 
 
