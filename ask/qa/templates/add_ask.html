@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ask a new question...</title>
+</head>
+<body>
+    <h1>Ask a new question</h1>
+    <hr>
+    <form method="post" action="{{ "/ask/" }}">
+	{% csrf_token %}
+	{{ form.as_p }}
+        <button type="submit">Ответить</button>
+    </form>
+</body>
+</html>
