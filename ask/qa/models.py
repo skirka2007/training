@@ -17,6 +17,10 @@ class Question(models.Model):
     author = models.ForeignKey(User, null = True)
     likes = models.ManyToManyField(User, related_name='likes_set')
 
+    def get_url(self):
+        return "/question/{}/".format(self.id)
+
+
 class Answer(models.Model):
     text = models.TextField()
     added_at = models.DateField(blank = True, auto_now_add=True)
