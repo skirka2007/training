@@ -2,7 +2,8 @@ from django.shortcuts import render
 from qa.models import Question, Answer
 from django.http import HttpResponse, HttpResponseNotFound, Http404, HttpResponseRedirect
 from django.core.paginator import Paginator 
-from qa.forms import AskForm, AnswerForm
+from qa.forms import AskForm, AnswerForm, LoginForm, SignupForm
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 def index(request):
@@ -71,7 +72,45 @@ def ask(request):
     return render(request, 'add_ask.html', {
         'form': form
     })
-    
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect('/')
+    else:
+        form = SignupForm()
+    return render(request, 'signup.html', {
+        'form': form,
+        'user': request.user,
+        'session': request.session,
+    })
+
+
+def login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect('/')
+    else:
+        form = LoginForm()
+    return render(request, 'login.html', {
+        'form': form,
+        'user': request.user,
+        'session': request.session,
+    })    
 
 def test(request, *args, **kwargs):
     return HttpResponse('OK')
