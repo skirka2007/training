@@ -14,7 +14,6 @@ class AskForm(forms.Form):
 
     def save(self):
         quest = Question(**self.cleaned_data)
-        quest.author_id = self._user.id
         quest.save()
         return quest
 
@@ -36,12 +35,11 @@ class AnswerForm(forms.Form):
 
     def save(self):
         ans = Answer(**self.cleaned_data)
-        ans.author_id = self._user.id
         ans.save()
 
 class SignupForm(forms.Form):
     username = forms.CharField(max_length=100, required=False)
-    email = forms.EmaileField(required=False)
+    email = forms.EmailField(required=False)
     password = forms.CharField(widget=forms.PasswordInput, required=False)
     
     def clean_username(self):

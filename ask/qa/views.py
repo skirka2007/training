@@ -50,6 +50,7 @@ def question_page(request, pk):
         form = AnswerForm(request.POST)
         if form.is_valid():
             form.save()
+            form.author = request.user
             url = quest.get_url()
             return HttpResponseRedirect(url)
     else:
@@ -65,6 +66,7 @@ def ask(request):
         form = AskForm(request.POST)
         if form.is_valid():
             quest = form.save()
+            quest.author = request.user
             url = quest.get_url()
             return HttpResponseRedirect(url)
     else:
@@ -93,11 +95,10 @@ def signup(request):
     })
 
 
-def login(request):
+def login_view(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            user = form.save()
             username = request.POST['username']
             password = request.POST['password']
             user = authenticate(username=username, password=password)
