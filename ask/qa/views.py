@@ -50,7 +50,7 @@ def question_page(request, pk):
         form = AnswerForm(request.POST)
         if form.is_valid():
             form.save()
-            form._user = request.user
+            form.author = request.user.username
             url = quest.get_url()
             return HttpResponseRedirect(url)
     else:
@@ -66,7 +66,7 @@ def ask(request):
         form = AskForm(request.POST)
         if form.is_valid():
             quest = form.save()
-            quest._user = request.user
+            quest.author = request.user.username
             url = quest.get_url()
             return HttpResponseRedirect(url)
     else:
