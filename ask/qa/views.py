@@ -49,8 +49,8 @@ def question_page(request, pk):
     if request.method == "POST":
         form = AnswerForm(request.POST)
         if form.is_valid():
+            form._user = request.user
             form.save()
-            form.author = request.user.username
             url = quest.get_url()
             return HttpResponseRedirect(url)
     else:
@@ -65,8 +65,8 @@ def ask(request):
     if request.method == "POST":
         form = AskForm(request.POST)
         if form.is_valid():
+            quest._user = request.user
             quest = form.save()
-            quest.author = request.user.username
             url = quest.get_url()
             return HttpResponseRedirect(url)
     else:
