@@ -1,3 +1,5 @@
+https://stepik.org/course/154/syllabus?auth=registration
+
 To add new files and directories to git:
 1) git add (name of directories)
 
